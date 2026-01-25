@@ -303,7 +303,7 @@ footer .bottom-details .bottom_text {
   section {
     display: none;
     background-color: var(--section-bg);
-    padding: 3rem;
+    width: 88vw;
     border-radius: 12px;
     box-shadow: var(--shadow);
     animation: fadeIn 0.5s ease-out;
@@ -325,7 +325,7 @@ footer .bottom-details .bottom_text {
   section {
     display: none;
     background-color: var(--section-bg);
-    padding: 3rem;
+    width: 88vw;
     border-radius: 12px;
     box-shadow: var(--shadow);
     animation: fadeIn 0.5s ease-out;
@@ -1490,6 +1490,7 @@ h2 span {
             visibility: hidden;
             pointer-events: none;
         }
+
 
 
 

@@ -607,7 +607,7 @@ h2 span {
 
 .skills-table th,
 .skills-table td {
-  padding: 8px;
+  padding: 4px;
   text-align: left;
 }
 
@@ -1490,6 +1490,7 @@ h2 span {
             visibility: hidden;
             pointer-events: none;
         }
+
 
 
 

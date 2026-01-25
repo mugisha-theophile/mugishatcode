@@ -546,7 +546,7 @@ h2 span {
   max-width: 90vw;
   margin: 0 auto;
   padding: 20px;
-  background: url();
+  background: var(--bg-color);
 }
 
 #skills-section h2 {
@@ -1490,6 +1490,7 @@ h2 span {
             visibility: hidden;
             pointer-events: none;
         }
+
 
 
 

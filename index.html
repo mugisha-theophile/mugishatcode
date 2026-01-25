@@ -1,0 +1,1812 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mugisha theophile</title>
+
+    <link rel="shortcut icon" href="greenlogo.png" type="image/x-icon">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!--Link File CSS-->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="main.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <style>
+        /* --- CSS VARIABLES (THEMING) --- */
+        :root {
+            /* LIGHT THEME (Default) */
+            --primary-color: #8FA31E;
+            --primary-hover: #030637;
+            --text-color: #1F2937;
+            --text-muted: #6B7280;
+            --bg-color: #F3F4F6;
+            --section-bg: #ffffff;
+            --nav-bg: #ffffff;
+            --footer-bg: #1F2937;
+            --footer-text: #F9FAFB;
+            --border-color: #E5E7EB;
+            --input-bg: #ffffff;
+            --input-border: #D1D5DB;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --card-hover-transform: translateY(-5px);
+
+            /* Chart Colors */
+            --chart-c1: #4F46E5;
+            /* Primary */
+            --chart-c2: #10B981;
+            /* Green */
+            --chart-c3: #F59E0B;
+            /* Amber */
+            --chart-c4: #EF4444;
+            /* Red */
+
+            /* Animation/Art Colors */
+            --art-skin: #FDBA74;
+            --art-shirt: #4F46E5;
+            --art-desk: #9CA3AF;
+            --art-screen-bg: #111827;
+            --art-screen-tex: #10B981;
+            --art-screen-text: #8FA31E;
+
+            /* WhatsApp Color */
+            --whatsapp-green: #25D366;
+        }
+
+        /* DARK THEME OVERRIDES */
+        [data-theme="dark"] {
+            --primary-color: #8FA31E;
+            --primary-hover: #030637;
+            --text-color: #F9FAFB;
+            --text-muted: #9CA3AF;
+            --bg-color: #111827;
+            --section-bg: #1F2937;
+            --nav-bg: #1F2937;
+            --footer-bg: #000000;
+            --footer-text: #E5E7EB;
+            --border-color: #374151;
+            --input-bg: #374151;
+            --input-border: #4B5563;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+        }
+
+        /* --- RESET & BASE STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* --- NAVIGATION --- */
+        header {
+            background-color: var(--nav-bg);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+
+        nav {
+            max-widt: 1200px;
+            max-width: 100%;
+            margin: 0 auto;
+            adding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+        }
+
+  
+
+        logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            margin-right: 80px;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 300;
+            transition: color 0.3s ease, border-bottom-color 0.3s ease;
+            padding-bottom: 0.25rem;
+            border-bottom: 2px solid transparent;
+
+            padding: 12px;
+            display: block;
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+        .nav-links li a:hover,
+        .nav-links li a.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
+        /* --- THEME TOGGLE BUTTON --- */
+        .theme-toggle {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            transform: rotate(15deg);
+        }
+
+        .theme-toggle svg {
+            width: 20px;
+            height: 20px;
+            display: none;
+        }
+
+        .theme-toggle .show {
+            display: block;
+        }
+
+        /* Mobile Menu */
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-color);
+            background: none;
+            border: none;
+        }
+
+        /* --- MAIN CONTENT AREA --- */
+        main {
+            flex: 1;
+            max-width: 1200px;
+            width: 100%;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            position: relative;
+        
+        }
+
+        section {
+            display: none;
+            background: ;
+            padding: 3rem;
+            animation: fadeIn 0.5s ease-out;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        section.active-section {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: var(--text-color);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 0.75rem 2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: var(--primary-hover);
+        }
+
+        /* --- PORTFOLIO SECTION STYLES --- */
+        
+        .portfolio-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            
+        }
+
+        .portfolio-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .filter-btn {
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 0.5rem 1.25rem;
+            border-radius: 0;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .filter-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            background-color: var(--section-bg);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            /* Animation for filtering */
+            animation: scaleUp 0.3s ease-out;
+        }
+
+        #portfolio a{
+            margin-top: 30px;
+        }
+        #portfolio a i{
+            margin-left: 20px;
+
+        }
+
+        @keyframes scaleUp {
+            from {
+                transform: scale(0.95);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .portfolio-item.hidden {
+            display: none;
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .portfolio-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .portfolio-item:hover .portfolio-image img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-info {
+            padding: 1.5rem;
+        }
+
+        .portfolio-category {
+            font-size: 0.75rem;
+            text-transform: capitalize;
+            letter-spacing: 1px;
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .portfolio-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        /* --- OTHER SECTION STYLES (Condensed for brevity) --- */
+        .ero {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: ;
+            
+        }
+
+        .hero {
+            text-align: center;
+            padding: 0 0 4rem 0; /* Reduced top padding to fit slider */
+        }
+        .hero h1 { font-size: 3rem; margin-bottom: 1rem; margin-top: 2rem; }
+        .hero p { font-size: 1.25rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 2rem auto; }
+
+        /* Slider Container */
+        .hero-slider {
+            position: relative;
+            max-width: 900px;
+            width: 100%;
+            height: 450px; /* Fixed height for consistency */
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .hero-track {
+            display: flex;
+            margin-top: 15px;
+            height: 100%;
+            transition: transform 0.6s ease-in-out; /* Smooth sliding animation */
+        }
+
+        .hero-slide {
+            min-width: 100%;
+            height: 100%;
+        }
+
+        .hero-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures images fill area without distortion */
+        }
+
+        /* Slider Controls */
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.7);
+            color: var(--text-color);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slider-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .prev-btn { left: 20px; }
+        .next-btn { right: 20px; }
+
+
+
+        .ero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .ero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+        }
+        .hero a{
+            margin: 3px;
+            
+        }
+
+        
+
+        .shop-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        .info-card {
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hours-list {
+            list-style: none;
+        }
+
+        .hours-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-color);
+        }
+
+        .hours-list li:last-child {
+            border-bottom: none;
+        }
+
+        .phone-number {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            background-color: rgba(79, 70, 229, 0.1);
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            transition: transform 0.2s ease, background-color 0.2s;
+        }
+
+        .phone-number:hover {
+            transform: scale(1.02);
+            background-color: rgba(79, 70, 229, 0.2);
+        }
+
+        .shop-items-container {
+            border-top: 2px solid var(--border-color);
+            padding-top: 2rem;
+        }
+
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .item-card {
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+
+        .item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .item-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .item-details {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .item-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .item-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+
+        .item-price {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .buy-btn {
+            background-color: var(--text-color);
+            color: var(--section-bg);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background-color 0.2s;
+        }
+
+        .buy-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* CSS ART: The Typing Person */
+        .animation-stage {
+            height: 400px;
+            position: relative;
+            background-color: var(--bg-color);
+            border-radius: 20px;
+            border: 2px dashed var(--border-color);
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            overflow: hidden;
+        }
+
+        .desk {
+            position: absolute;
+            bottom: 50px;
+            width: 280px;
+            height: 10px;
+            background-color: var(--art-desk);
+            border-radius: 5px;
+        }
+
+        .desk::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 10px;
+            width: 10px;
+            height: 100px;
+            background-color: var(--art-desk);
+        }
+
+        .desk::after {
+            content: '';
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            width: 10px;
+            height: 100px;
+            background-color: var(--art-desk);
+        }
+
+        .monitor {
+            position: absolute;
+            bottom: 60px;
+            width: 180px;
+            height: 120px;
+            background-color: #000;
+            border-radius: 10px;
+            border: 4px solid var(--text-color);
+            z-index: 2;
+        }
+
+        .monitor-screen {
+            width: 100%;
+            height: 100%;
+            background-color: var(--art-screen-bg);
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .monitor-stand {
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 20px;
+            background-color: var(--text-color);
+        }
+
+        .code-line {
+            position: absolute;
+            left: 10px;
+            height: 4px;
+            background-color: var(--art-screen-text);
+            border-radius: 2px;
+            opacity: 0;
+            animation: typeLine 3s infinite;
+        }
+
+        .code-line:nth-child(1) {
+            top: 20px;
+            width: 40%;
+            animation-delay: 0.5s;
+        }
+
+        .code-line:nth-child(2) {
+            top: 35px;
+            width: 70%;
+            animation-delay: 1.0s;
+        }
+
+        .code-line:nth-child(3) {
+            top: 50px;
+            width: 50%;
+            animation-delay: 1.5s;
+        }
+
+        .code-line:nth-child(4) {
+            top: 65px;
+            width: 60%;
+            animation-delay: 2.0s;
+        }
+
+        @keyframes typeLine {
+            0% {
+                opacity: 0;
+                width: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .person {
+            position: absolute;
+            bottom: 70px;
+            z-index: 1;
+            width: 100px;
+            height: 100px;
+        }
+
+        .head {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background-color: var(--art-skin);
+            border-radius: 50%;
+            animation: bobHead 2s infinite ease-in-out;
+        }
+
+        .head::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 4px solid #4B5563;
+        }
+
+        .body {
+            position: absolute;
+            top: 35px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 60px;
+            background-color: var(--art-shirt);
+            border-radius: 20px 20px 0 0;
+        }
+
+        .arm {
+            position: absolute;
+            top: 40px;
+            width: 12px;
+            height: 40px;
+            background-color: var(--art-shirt);
+            border-radius: 6px;
+            transform-origin: top center;
+        }
+
+        .arm.left {
+            left: 5px;
+            animation: typeLeft 1s infinite ease-in-out;
+        }
+
+        .arm.right {
+            right: 5px;
+            animation: typeRight 1s infinite ease-in-out;
+        }
+
+        @keyframes bobHead {
+
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(2px);
+            }
+        }
+
+        @keyframes typeLeft {
+
+            0%,
+            100% {
+                transform: rotate(-10deg);
+                height: 40px;
+            }
+
+            50% {
+                transform: rotate(10deg);
+                height: 35px;
+            }
+        }
+
+        @keyframes typeRight {
+
+            0%,
+            100% {
+                transform: rotate(10deg);
+                height: 40px;
+            }
+
+            50% {
+                transform: rotate(-10deg);
+                height: 35px;
+            }
+        }
+
+        /* --- .about-content { display: flex; gap: 2rem; align-items: center; flex-wrap: wrap; } --- */
+        /* --- .about-text { flex: 1; min-width: 300px; } --- */
+        /* --- .about-image { flex: 1; min-width: 300px; } --- */
+        /* --- .about-image img { width: 100%; border-radius: 8px; border: 1px solid var(--border-color); } --- */
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            
+        }
+
+        .service-card {
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: var(--card-hover-transform);
+            border-color: var(--primary-color);
+        }
+        .services h2 span {
+            color: var(--primary-color);
+        }
+
+        .services i{
+            margin-top: 20px;
+            margin-left: 50px;
+        }
+
+        .service-card i {
+            font-size: 1.9rem;
+            color: black;
+            margin-bottom: rem;
+        }
+
+        .icon-placeholder {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(79, 70, 229, 0.1);
+            color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin: 0 auto 1rem auto;
+        }
+
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--input-border);
+            border-radius: 6px;
+            font-family: inherit;
+            background-color: var(--input-bg);
+            color: var(--text-color);
+        }
+
+        .form-group textarea {
+
+            height: 20vh;
+        }
+
+
+        .submit-btn {
+            width: 50%;
+            background-color: var(--primary-color);
+            margin-left: 20%;
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        /* --- FOOTER --- */
+
+
+        /* --- RESPONSIVE --- */
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .clients-container {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-panel {
+                order: -1;
+            }
+
+            /* Show stats on top on mobile */
+            .contact-bottom-grid {
+                grid-template-columns: 1fr;
+            }
+            
+
+            
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--nav-bg);
+                padding: 1rem;
+                box-shadow: var(--shadow);
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .nav-links.mobile-nav-visible {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .theme-toggle {
+                margin-left: auto;
+                margin-right: 1rem;
+            }
+            body{
+                background: url(B612_20250509_162526_235.jpg);
+            }
+            .hero{
+              background: ;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 1.5rem;
+            }
+
+            .shop-layout,
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-map-top {
+                height: 200px;
+            }
+
+            .animation-stage {
+                order: -1;
+                margin-bottom: 2rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+
+            .hero h1 { font-size: 2rem; }
+            .hero-slider { 
+                height: 300px;
+            }
+            .slider-btn { width: 40px; height: 40px; font-size: 1.2rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- PRELOADER -->
+    <div id="preloader">
+        <!--<div class="preloader-logo">
+            <span>⚡</span> BrandName
+        </div>-->
+        <div class="brand">
+            <a href="#" class="company-logo">
+                <img src="logo2.png" alt="">
+            </a>
+        </div>
+        <p> MTcode Loading...</p>
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header>
+        <nav>
+            <!--<a href="#" class="logo" onclick="switchSection('home')">
+                <span>⚡</span> BrandName
+
+            </a>-->
+            <div class="brand">
+                <a href="#" class="company-logo">
+                    <img src="greenlogo.png" alt="">
+                </a>
+            </div>
+
+            <!-- Theme Toggle -->
+            <button id="theme-toggle" class="theme-toggle" aria-label="Switch to Dark Mode">
+                <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg id="icon-moon" class="show" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+
+            <button class="menu-toggle" id="mobile-menu-btn">☰</button>
+
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#" class="nav-link active" data-target="home">Home</a></li>
+                <li><a href="#" class="nav-link" data-target="about">About</a></li>
+                <li><a href="#" class="nav-link" data-target="services">Services</a></li>
+                <li><a href="#" class="nav-link" data-target="shop">Shop</a></li>
+                <li><a href="#" class="nav-link" data-target="portfolio">Portfolio</a></li>
+                <li><a href="#" class="nav-link" data-target="clients">Clients</a></li>
+                <li><a href="#" class="nav-link" data-target="contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+
+        <!-- HOME SECTION -->
+        <section id="home" class="active-section">
+            <div class="hero">
+                <h1>Welcome to the MTcode </h1>
+                <p>At MTcode We build digital experiences that are fast,premium, accessible, and beautifully designed.
+                </p>
+                
+                <a href="#" onclick="switchSection('shop')" class="cta-button">Get started <i
+                        class="ri-arrow-right-line"></i></a>
+                <a href="#" onclick="switchSection('portfolio')" class="cta-button">View Our Work</a>
+                <!--<div style="margin-top: 3rem;">
+                    <img src="pc-desk-empty-photovoltaics-factory-monitoring-system-performance-closeup.jpg" alt="Hero Dashboard"
+                        style="width: 100%; max-width: 800px; border-radius: 8px; box-shadow: var(--shadow);">
+                </div>-->
+
+                 <!-- UPDATED IMAGE SLIDER -->
+                <div class="hero-slider">
+                    <div class="hero-track" id="heroTrack">
+                        <!-- Slide 1 -->
+                        <div class="hero-slide">
+                            <img src="code.jpg" alt="Project 1">
+                        </div>
+                        <!-- Slide 2 -->
+                        <div class="hero-slide">
+                            <img src="wd.jpg" alt="Project 2">
+                        </div>
+                        <!-- Slide 3 -->
+                        <div class="hero-slide">
+                            <img src="software-gbba3db4f0_1280.webp" alt="Project 3">
+                        </div>
+                        <div class="hero-slide">
+                            <img src="des.jpg" alt="Project 3">
+                        </div>
+                        <div class="hero-slide">
+                            <img src="printer.webp" alt="Project 3">
+                        </div>
+                        <div class="hero-slide">
+                            <img src="logo desi.jpg" alt="Project 3">
+                        </div>
+                    </div>
+                    
+                    <!-- Controls -->
+                    <button class="slider-btn prev-btn" id="prevBtn" aria-label="Previous Slide">&#10094;</button>
+                    <button class="slider-btn next-btn" id="nextBtn" aria-label="Next Slide">&#10095;</button>
+                </div>
+
+                
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <!--<section id="about">
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="https://picsum.photos/seed/aboutteam/500/500" alt="Our Team">
+                </div>
+                <div class="about-text">
+                    <h2>About Us</h2>
+                    <p style="margin-bottom: 1rem; color: var(--text-muted);">Founded in 2023, BrandName started with a simple mission: to simplify web development for everyone.</p>
+                    <p style="color: var(--text-muted);">We believe that great design should not be complicated. Our team consists of dedicated designers and developers who are passionate about creating user-friendly interfaces.</p>
+                </div>
+            </div>
+        </section>-->
+
+        <section id="about">
+            <div class="about-content">
+                <!-- Profile Picture -->
+                <div class="profile-picture">
+                    <!-- Replace 'profile.jpg' with your profile picture path -->
+                    <img src="B6f.jpg" alt="Profile Picture">
+                    <p>Co-Founder & CEO</p>
+                </div>
+
+                <!-- About Text -->
+                <div class="about-text">
+                    <h2>About<span> me</span></h2>
+                    <img src="greenlogo.png" alt="">
+                    <p>At Mtcode, we build websites that goes beyond aesthetics, incorporation powerful management
+                        systems to
+                        streamline
+                        your business operations.<br>As leading provider of cutting-edge web solutions, we take pride in
+                        delivering
+                        bespoke websites that not only meet but exceed your greatest expectations.</p>
+                </div>
+                <!--<a href="#" onclick="switchSection('skills-section')" class="cta-button"> More about MTC</a>-->
+                <!-- From Uiverse.io by mobinkakei -->
+                <button  onclick="switchSection('skills-section')" class="cta">
+                    <span class="span">MORE</span>
+                    <span class="second">
+                        <svg width="50px" height="20px" viewBox="0 0 66 43" version="1.1"
+                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="arrow" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <path class="one"
+                                    d="M40.1543933,3.89485454 L43.9763149,0.139296592 C44.1708311,-0.0518420739 44.4826329,-0.0518571125 44.6771675,0.139262789 L65.6916134,20.7848311 C66.0855801,21.1718824 66.0911863,21.8050225 65.704135,22.1989893 C65.7000188,22.2031791 65.6958657,22.2073326 65.6916762,22.2114492 L44.677098,42.8607841 C44.4825957,43.0519059 44.1708242,43.0519358 43.9762853,42.8608513 L40.1545186,39.1069479 C39.9575152,38.9134427 39.9546793,38.5968729 40.1481845,38.3998695 C40.1502893,38.3977268 40.1524132,38.395603 40.1545562,38.3934985 L56.9937789,21.8567812 C57.1908028,21.6632968 57.193672,21.3467273 57.0001876,21.1497035 C56.9980647,21.1475418 56.9959223,21.1453995 56.9937605,21.1432767 L40.1545208,4.60825197 C39.9574869,4.41477773 39.9546013,4.09820839 40.1480756,3.90117456 C40.1501626,3.89904911 40.1522686,3.89694235 40.1543933,3.89485454 Z"
+                                    fill="#FFFFFF"></path>
+                                <path class="two"
+                                    d="M20.1543933,3.89485454 L23.9763149,0.139296592 C24.1708311,-0.0518420739 24.4826329,-0.0518571125 24.6771675,0.139262789 L45.6916134,20.7848311 C46.0855801,21.1718824 46.0911863,21.8050225 45.704135,22.1989893 C45.7000188,22.2031791 45.6958657,22.2073326 45.6916762,22.2114492 L24.677098,42.8607841 C24.4825957,43.0519059 24.1708242,43.0519358 23.9762853,42.8608513 L20.1545186,39.1069479 C19.9575152,38.9134427 19.9546793,38.5968729 20.1481845,38.3998695 C20.1502893,38.3977268 20.1524132,38.395603 20.1545562,38.3934985 L36.9937789,21.8567812 C37.1908028,21.6632968 37.193672,21.3467273 37.0001876,21.1497035 C36.9980647,21.1475418 36.9959223,21.1453995 36.9937605,21.1432767 L20.1545208,4.60825197 C19.9574869,4.41477773 19.9546013,4.09820839 20.1480756,3.90117456 C20.1501626,3.89904911 20.1522686,3.89694235 20.1543933,3.89485454 Z"
+                                    fill="#FFFFFF"></path>
+                                <path class="three"
+                                    d="M0.154393339,3.89485454 L3.97631488,0.139296592 C4.17083111,-0.0518420739 4.48263286,-0.0518571125 4.67716753,0.139262789 L25.6916134,20.7848311 C26.0855801,21.1718824 26.0911863,21.8050225 25.704135,22.1989893 C25.7000188,22.2031791 25.6958657,22.2073326 25.6916762,22.2114492 L4.67709797,42.8607841 C4.48259567,43.0519059 4.17082418,43.0519358 3.97628526,42.8608513 L0.154518591,39.1069479 C-0.0424848215,38.9134427 -0.0453206733,38.5968729 0.148184538,38.3998695 C0.150289256,38.3977268 0.152413239,38.395603 0.154556228,38.3934985 L16.9937789,21.8567812 C17.1908028,21.6632968 17.193672,21.3467273 17.0001876,21.1497035 C16.9980647,21.1475418 16.9959223,21.1453995 16.9937605,21.1432767 L0.15452076,4.60825197 C-0.0425130651,4.41477773 -0.0453986756,4.09820839 0.148075568,3.90117456 C0.150162624,3.89904911 0.152268631,3.89694235 0.154393339,3.89485454 Z"
+                                    fill="#FFFFFF"></path>
+                            </g>
+                        </svg>
+                    </span>
+                </button>
+
+            </div>
+        </section>
+
+        <!-- SERVICES SECTION -->
+        <section id="services">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h2><span>Our </span>Services</h2>
+                <p style="color: var(--text-muted);">Mtcode inc has such Comprehensive solutions for your digital needs.
+                </p>
+            </div>
+            <div class="services-grid">
+                <article class="service-card">
+                    <div class="icon-placeholder">💻</div>
+                    <h3>Web Dev</h3>
+                </article>
+                <article class="service-card">
+                    <div class="icon-placeholder">🎨</div>
+                    <h3>UI/UX</h3>
+                </article>
+                <article class="service-card">
+                    <div class="icon-placeholder">📱</div>
+                    <h3>Software&Mobile Application</h3>
+                </article>
+                <article class="service-card">
+                    <div class="icon-placeholder"><i class="fa-solid fa-spinner"></i></div>
+                    <h3>Printing,photocopying,scanning</h3>
+                </article>
+                <article class="service-card">
+                    <div class="icon-placeholder"><i class="fa-solid fa-computer"></i></div>
+                    <h3>P.O.S system</h3>
+                </article>
+                <article class="service-card">
+                    <div class="icon-placeholder"><i class="fa-brands fa-internet-explorer"></i></div>
+                    <h3>Online Services Access</h3>
+                </article>
+            </div>
+
+            <i href="#" onclick="switchSection('skills-section')"style="width: 40vw; margin-left: 50px; margin-top: 30px; cursor: pointer;" class="fa-solid fa-arrow-left"> </i>
+            <i href="#" onclick="switchSection('contact')"style=" margin-left: 80px; margin-top: 30px; cursor: pointer;" class="fa-solid fa-arrow-right"> </i>
+        </section>
+
+        <!-- PORTFOLIO SECTION (NEW) -->
+        <section id="portfolio">
+            <div class="portfolio-header">
+                <h2><span>Our</span> Portfolio</h2>
+                <p style="color: var(--text-muted);">Explore our latest projects across different domains.</p>
+            </div>
+
+            <!-- Filters -->
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="web-design">Web Design</button>
+                <button class="filter-btn" data-filter="web-development">Web Development</button>
+                <button class="filter-btn" data-filter="application">Application</button>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="portfolio-grid">
+
+                <!-- Project 1: Web Design -->
+                <article class="portfolio-item" data-category="web-design">
+                    <div class="portfolio-image">
+                        <img src="prjct (1).jpg" alt="Project 1">
+                    </div>
+                    <div class="portfolio-info">
+                        <span class="portfolio-category">Web Design</span>
+                        <h3 class="portfolio-title">Agency Landing</h3>
+                    </div>
+                </article>
+
+                <!-- Project 2: Application -->
+                <article class="portfolio-item" data-category="application">
+                    <div class="portfolio-image">
+                        <img src="portfolio7.png" alt="Project 2">
+                    </div>
+                    <div class="portfolio-info">
+                        <span class="portfolio-category">Application</span>
+                        <h3 class="portfolio-title">Finance Tracker</h3>
+                    </div>
+                </article>
+
+                <!-- Project 3: Web Development -->
+                <article class="portfolio-item" data-category="web-development">
+                    <div class="portfolio-image">
+                        <img src="ecomer.avif" alt="Project 3">
+                    </div>
+                    <div class="portfolio-info">
+                        <span class="portfolio-category">Web Development</span>
+                        <h3 class="portfolio-title">E-Commerce API</h3>
+                    </div>
+                </article>
+
+                <!-- Project 4: Web Design -->
+                <article class="portfolio-item" data-category="web-design">
+                    <div class="portfolio-image">
+                        <img src="project (3).jpg" alt="Project 4">
+                    </div>
+                    <div class="portfolio-info">
+                        <span class="portfolio-category">Web Design</span>
+                        <h3 class="portfolio-title">Restaurant Menu</h3>
+                    </div>
+                </article>
+
+                <!-- Project 5: Application -->
+                <article class="portfolio-item" data-category="application">
+                    <div class="portfolio-image">
+                        <img src="Screen+Shot+2020-06-29+at+2.40.53+PM.webp" alt="Project 5">
+                    </div>
+                    <div class="portfolio-info">
+                        <span class="portfolio-category">Application</span>
+                        <h3 class="portfolio-title">Health Monitor</h3>
+                    </div>
+                </article>
+
+                <!-- Project 6: Web Development -->
+                <article class="portfolio-item" data-category="web-development">
+                    <div class="portfolio-image">
+                        <img src="const.png" alt="Project 6">
+                    </div>
+                    <div class="portfolio-info">
+                        <span class="portfolio-category">Web Development</span>
+                        <h3 class="portfolio-title">Corporate Dashboard</h3>
+                    </div>
+                </article>
+
+            </div>
+
+            <a href="#" onclick="switchSection('shop')" class="cta-button">View Our package<i class="fa-solid fa-arrow-right"></i></a>
+            <a href="#" onclick="switchSection('gallery')" class="cta-button">Watch Our Project Here<i class="fa-solid fa-arrow-right"></i></a>
+
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact">
+            <div class="contact-header">
+                <h2>Let's Build <br><span class="dynamic-text-wrapper"><span id="word-rotator">Websites</span></span>
+                </h2>
+                <p style="color: var(--text-muted); margin-top: 0.5rem;">Contact us to start your journey.</p>
+            </div>
+
+            <!-- 1. MAP AT TOP -->
+            <div class="contact-map-top">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15391.265012214435!2d28.6641430863068!3d-15.33221770015881!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2szm!4v1698509545855!5m2!1sen!2szm"
+                    allowfullscreen="" loading="lazy">
+                </iframe>
+            </div>
+
+            <!-- 2. ADDRESS & FORM BELOW MAP -->
+            <div class="contact-bottom-grid">
+
+                <!-- Address Column -->
+                <div class="address-card">
+                    <h3>Contact Info</h3>
+
+                    <div class="contact-detail-item">
+                        <div class="detail-icon">📍</div>
+                        <div class="detail-content">
+                            <h4>Our Location</h4>
+                            <p>123 Innovation ZED,<br>Lusaka City, TC 90210</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-detail-item">
+                        <div class="detail-icon">✉️</div>
+                        <div class="detail-content">
+                            <h4>Email Us</h4>
+                            <a href="mugishaethic8@gmail.com">mugisha<br>ethic8@gmail.com</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-detail-item">
+                        <div class="detail-icon">📞</div>
+                        <div class="detail-content">
+                            <h4>Call Us</h4>
+                            <a href="tel:+260770046318">+260770046318</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Column -->
+                <div class="contact-form-container">
+                    <form action="https://api.web3forms.com/submit" method="POST">
+                        <div class="form-group">
+                            <input type="hidden" name="access_key" value="8e72dd91-8d8c-449d-9202-c158a4d8b61f">
+                            <input type="text" name="fullname" class="form-input" placeholder="Full name" required
+                                data-form-input>
+                        </div>
+
+                        <div class="form-group">
+
+                            <input type="email" name="email" class="form-input" placeholder="Email address" required
+                                data-form-input>
+                        </div>
+
+                        <div class="form-group">
+
+                            <textarea name="message" class="form-input" placeholder="Your Message" required
+                                data-form-input></textarea>
+                        </div>
+
+
+
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+
+                    <!--<form action="https://api.web3forms.com/submit" method="POST">
+
+                        <div class="form-group">
+                            <input type="hidden" name="access_key" value="8e72dd91-8d8c-449d-9202-c158a4d8b61f">
+                            <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
+
+                            <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input>
+                        </div>
+
+                        <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
+
+                        <button type="submit" class="submit-btn">Send Message</button>
+
+                    </form>-->
+
+
+                </div>
+
+
+
+            </div>
+
+
+        </section>
+
+
+        <section id="skills-section">
+            <h2>Skills</h2>
+            <table class="skills-table">
+                <thead>
+                    <tr>
+                        <th>Skill</th>
+                        <th>Description</th>
+                        <th>Certificate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><i class="ri-html5-line"></i>HTML,<i class="ri-css3-fill"></i>CSS</td>
+                        <td>Building websites using HTML, CSS, scss.</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td><i class="ri-javascript-fill"></i> JavaScript</td>
+                        <td>Building websites using HTML, CSS and JavaScript.</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td><i class="ri-reactjs-line"></i> React.js</td>
+                        <td>Building websites using JavaScript and react.</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td><i class="ri-npmjs-line"></i> Node.js</td>
+                        <td>Building websites using node in react.js.</td>
+                        <td>Not yet</td>
+                    </tr>
+                    <tr>
+                        <td><i class="ri-github-fill"></i> GitHub</td>
+                        <td>Managing and maintaining databases for applications</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa-brands fa-figma"></i></i> Figma</td>
+                        <td>Creating visually appealing graphics and designs.</td>
+                        <td>Yes</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="action-buttons">
+                <a href="#" onclick="switchSection('gallery')" title="Book a lector">Discover more</a>
+                <a href="#" onclick="switchSection('portfolio')" class="secondary" title="Learn More">Learn More<i
+                        class="ri-arrow-right-line"></i></a>
+            </div>
+
+            <i href="#" onclick="switchSection('contact')"style=" margin-left: 80px; margin-top: 30px; cursor: pointer;" class="fa-solid fa-arrow-right"> continue..</i>
+        </section>
+
+        <!-- CLIENTS SECTION (NEW) -->
+        <section id="clients">
+            <div style="text-align: center; margin-bottom: 2.5rem;">
+                <h2>Our <span>Trusted</span> Clients</h2>
+                <p style="color: var(--text-muted); font-weight: 600;">We are proud to work with industry leaders.</p>
+            </div>
+
+            <div class="clients-container">
+                <!-- 1. Client List -->
+                <div class="clients-grid">
+
+                    <!-- Client 1 -->
+                    <div class="client-card">
+                        <img src="mugabooo.jpg" alt="Logo" class="client-logo">
+                        <h3 class="client-name">Mugabo Aimable</h3>
+                        <a href="https://www.aimablemugabo.com/" target="_blank" class="client-link">https://www.aimablemugabo.com</a>
+                        <div class="client-rating">★★★★★</div>
+                    </div>
+
+                    <!-- Client 2 -->
+                    <div class="client-card">
+                        <img src="laser.jpg" alt="Logo" class="client-logo">
+                        <h3 class="client-name">Laser Charger Limited</h3>
+                        <a href="https://lasercharge.co.zm/" target="_blank" class="client-link">https://lasercharge.co.zm/</a>
+                        <div class="client-rating">★★★★☆</div>
+                    </div>
+
+                    <!-- Client 3 -->
+                    <div class="client-card">
+                        <img src="ctrlhub.jpg" alt="Logo" class="client-logo">
+                        <h3 class="client-name">Ctrl hub Zambia</h3>
+                        <a href="https://wa.me/ctrlhubzm?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGne1TeJ57IuI1J6m7gP0bnc-FkOwRKTLllvo40QpsGihp_prvltbZRKWL-YFs_aem_KCbZGDGwv0Qs2Pv1kcULTw" target="_blank" class="client-link">https://wa.me/ctrlhubzm</a>
+                        <div class="client-rating">★★★★★</div>
+                    </div>
+
+                    
+                </div>
+
+                <!-- 2. Stats & Pie Chart -->
+                <div class="stats-panel">
+                    <h3 class="stats-title">Client Demographics</h3>
+
+                    <div class="pie-chart-wrapper">
+                        <div class="pie-chart"></div>
+                        <div class="total-clients-overlay">
+                            <div class="total-number" id="totalCounter">0</div>
+                            <div class="total-label">Clients</div>
+                        </div>
+                    </div>
+
+                    <div class="chart-legend">
+                        <div class="legend-item">
+                            <span><span class="legend-color" style="background: var(--chart-c1);"></span>Tech</span>
+                            <span style="color: var(--text-muted);">40%</span>
+                        </div>
+                        <div class="legend-item">
+                            <span><span class="legend-color" style="background: var(--chart-c2);"></span>Finance</span>
+                            <span style="color: var(--text-muted);">25%</span>
+                        </div>
+                        <div class="legend-item">
+                            <span><span class="legend-color" style="background: var(--chart-c3);"></span>Retail</span>
+                            <span style="color: var(--text-muted);">20%</span>
+                        </div>
+                        <div class="legend-item">
+                            <span><span class="legend-color" style="background: var(--chart-c4);"></span>Others</span>
+                            <span style="color: var(--text-muted);">15%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SHOP SECTION -->
+        <section id="shop">
+            <div class="shop-layout">
+
+                <!-- Shop Info -->
+                <div class="shop-info">
+                    <h2>Visit <span>Our</span> Shop</h2>
+                    <p style="margin-bottom: 2rem; color: var(--text-muted);">Come see where the magic happens. Our
+                        MTcode is open for consultations.</p>
+
+                    <div class="info-card">
+                        <h3 style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                            🕒 Working Hours
+                        </h3>
+                        <ul class="hours-list">
+                            <li><span>Monday - Friday</span> <span>9:00 AM - 6:00 PM</span></li>
+                            <li><span>Saturday</span> <span>10:00 AM - 4:00 PM</span></li>
+                            <li><span>Sunday</span> <span>Closed</span></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 style="margin-bottom: 1rem;">📞 Call Us Directly</h3>
+                        <a href="tel:+1234567890" class="phone-number">
+                            <span>+2 (607) 700-463-18</span>
+                        </a>
+                        <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-muted);">Available during
+                            working hours.</p>
+                    </div>
+
+                    <!-- NEW: See Our Items Button -->
+                    <div style="margin-top: 2.5rem;">
+                        <!--<button class="cta-button" onclick="document.getElementById('skills-section').scrollIntoView({behavior: 'smooth'})">See Our Items</button>-->
+                        <a href="#" onclick="switchSection('gallery')" class="cta-button">View our project</a>
+                    </div>
+                </div>
+
+                <!-- CSS Animation Stage -->
+                <div class="animation-stage">
+                    <!-- The Desk -->
+                    <div class="desk"></div>
+
+                    <!-- The Monitor -->
+                    <div class="monitor">
+                        <div class="monitor-stand"></div>
+                        <div class="monitor-screen">
+                            <div class="code-line"></div>
+                            <div class="code-line"></div>
+                            <div class="code-line"></div>
+                            <div class="code-line"></div>
+                        </div>
+                    </div>
+
+                    <!-- The Person -->
+                    <div class="person">
+                        <div class="head"></div>
+                        <div class="body"></div>
+                        <div class="arm left"></div>
+                        <div class="arm right"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- NEW: Shop Items Grid -->
+            <div id="shop-items" class="shop-items-container">
+                <h3>Featured Products & Packages</h3>
+                <div class="items-grid">
+
+                    <!-- Item 1 -->
+                    <div class="item-card">
+                        <img src="open-uri20220220-4-1ovy4uq" alt="Product 1" class="item-image">
+                        <div class="item-details">
+                            <h4 class="item-title">Premium UI Kit</h4>
+                            <p class="item-desc">A complete design system for your next web project.</p>
+                            <div class="item-footer">
+                                <span class="item-price">K 1000 - 5000</span>
+                                <button onclick="window.open('https://wa.me/260770046318?text=Hello%20I%20am%20interested%20in%20your%20services.', '_blank')" class="buy-btn">Get this</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <img src="4_web_responsivo.jpg" alt="Product 1" class="item-image">
+                        <div class="item-details">
+                            <h4 class="item-title">Full-responsive website</h4>
+                            <p class="item-desc">Get a complete design system for your next Full-responsive website to all devices.</p>
+                            <div class="item-footer">
+                                <span class="item-price">K 1000 - 10000</span>
+                                <button onclick="window.open('https://wa.me/260770046318?text=Hello%20I%20am%20interested%20in%20your%20services.', '_blank')" class="buy-btn">Get this</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                    <!-- Item 2 -->
+                    <div class="item-card">
+                        <img src="logo des2.webp" alt="Product 2" class="item-image">
+                        <div class="item-details">
+                            <h4 class="item-title">Logo Design Package</h4>
+                            <p class="item-desc">Get 5 unique concepts with vector files and branding assets.</p>
+                            <div class="item-footer">
+                                <span class="item-price">K 2340</span>
+                                <button onclick="window.open('https://wa.me/260770046318?text=Hello%20I%20am%20interested%20in%20your%20services.', '_blank')" class="buy-btn">Get this</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="item-card">
+                        <img src="20-Best-Handpicked-website-templates-scaled.jpg" alt="Product 3" class="item-image">
+                        <div class="item-details">
+                            <h4 class="item-title">Website Template</h4>
+                            <p class="item-desc">Responsive HTML5/CSS3,figma starter template for both leaners and developer.</p>
+                            <div class="item-footer">
+                                <span class="item-price">K 570</span>
+                                <button onclick="window.open('https://wa.me/260770046318?text=Hello%20I%20am%20interested%20in%20your%20services.', '_blank')" class="buy-btn">Get this</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div class="item-card">
+                        <img src="What-You-Get-in-Our-Full-SEO-Audit.webp" alt="Product 4" class="item-image">
+                        <div class="item-details">
+                            <h4 class="item-title">SEO Audit Report</h4>
+                            <p class="item-desc">Detailed analysis your site's health with actionable insights at MTcode.</p>
+                            <div class="item-footer">
+                                <span class="item-price">K 1700</span>
+                                <button onclick="window.open('https://wa.me/260770046318?text=Hello%20I%20am%20interested%20in%20your%20services.', '_blank')" class="buy-btn">Get this</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+        <!-- GALLERY SECTION (NEW) -->
+        <section id="gallery">
+            <div class="gallery-header">
+                <h2>Project <span>Gallery</span></h2>
+                <p style="color: var(--text-muted);">Click on any photo to view the full picture.</p>
+            </div>
+
+            <div class="gallery-grid">
+                <!-- Gallery Items -->
+                <div class="gallery-item">
+                    <img src="project (1).jpg" alt="Project 1">
+                    <div class="gallery-overlay"><span>Full-View</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="MUGABO.jpg" alt="Project 2">
+                    <div class="gallery-overlay"><span>Full-View</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="ject (2).jpg" alt="Project 3">
+                    <div class="gallery-overlay"><span>Full-View</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="portfolio7.png" alt="Project 4">
+                    <div class="gallery-overlay"><span>Full-View</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="prjct (3).jpg" alt="Project 5">
+                    <div class="gallery-overlay"><span>Full-View</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="ject (3).jpg" alt="Project 6">
+                    <div class="gallery-overlay"><span>Full-View</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="sho (2).jpg" alt="Project 7">
+                    <div class="gallery-overlay"><span>Full-View</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="ecomer.avif" alt="Project 8">
+                    <div class="gallery-overlay"><span>View</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="hel.avif" alt="Project 9">
+                    <div class="gallery-overlay"><span>Full-View</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="mcd.jpg" alt="Project 10">
+                    <div class="gallery-overlay"><span>Full-View</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="mcd2.jpg" alt="Project 11">
+                    <div class="gallery-overlay"><span>Full-View</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="const.png" alt="Project 12">
+                    <div class="gallery-overlay"><span>Full-View</span></div>
+                </div>
+            </div>
+        </section>
+
+
+
+    </main>
+
+    <!-- WHATSAPP BUTTON -->
+    <a href="https://wa.me/260770046318?text=Hello%20I%20am%20interested%20in%20your%20services." class="whatsapp-fab"
+        target="_blank" aria-label="Chat on WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="white">
+            <path
+                d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.592 2.654-.696c1.003.572 1.896.89 3.073.89 3.18 0 5.768-2.587 5.768-5.766 0-3.18-2.588-5.766-5.768-5.766zm-3.031 6.828c-.094-.148-.257-.246-.345-.391-.088-.143-.064-.299-.064-.476 0-.177.007-.325.038-.441.03-.116.092-.23.162-.325.07-.094.148-.167.233-.218.084-.05.175-.082.271-.082.095 0 .188.027.277.082.09.055.22.165.394.332.174.167.34.313.498.438.159.124.316.23.473.314.158.084.31.128.459.133.148.005.305-.03.47-.105.165-.075.32-.182.464-.321.144-.139.266-.325.365-.557.099-.233.149-.471.149-.716 0-.244-.05-.479-.149-.704-.099-.225-.235-.417-.407-.575-.172-.159-.374-.296-.606-.41-.232-.115-.485-.179-.757-.192-.272-.013-.528.034-.768.141z" />
+        </svg>
+    </a>
+
+    <!-- LIGHTBOX MODAL (Hidden by default) -->
+    <div id="lightbox">
+        <span id="close-lightbox">&times;</span>
+        <img id="lightbox-img" src="">
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="content">
+            <div class="top">
+                <div class="logo-details">
+                    <i class="fa-solid fa-earth-africa"></i>
+                    <span class="logo_name">Mtcoding</span>
+                </div>
+                <div class="media-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-x"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                </div>
+            </div>
+            <div class="link-boxes">
+                <ul class="box">
+                    <li class="link_name">Company</li>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Contact us</a></li>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Get started</a></li>
+                </ul>
+                <ul class="box">
+                    <li class="link_name">Services</li>
+                    <li><a href="#">App design</a></li>
+                    <li><a href="#">Web design</a></li>
+                    <li><a href="#">Logo design</a></li>
+                    <li><a href="#">Banner design</a></li>
+                </ul>
+                <ul class="box">
+                    <li class="link_name">Account</li>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">My account</a></li>
+                    <li><a href="#">Prefrences</a></li>
+                    <li><a href="#">Purchase</a></li>
+                </ul>
+                <ul class="box">
+                    <li class="link_name">Courses</li>
+                    <li><a href="#">HTML & CSS</a></li>
+                    <li><a href="#">JavaScript</a></li>
+                    <li><a href="#">Photography</a></li>
+                    <li><a href="#">Photoshop</a></li>
+                </ul>
+                <ul class="box input-box">
+                    <li class="link_name">Subscribe</li>
+                    <li><input type="text" placeholder="Enter your email"></li>
+                    <li><input type="button" value="Subscribe"></li>
+                </ul>
+            </div>
+        </div>
+        <div class="bottom-details">
+            <div class="bottom_text">
+                <span class="copyright_text">Copyright © 2024 <a href="#">Mtcode </a>All rights reserved</span>
+                <span class="policy_terms">
+                    <a href="#">Privacy policy</a>
+                    <a href="#">Terms & condition</a>
+                </span>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+
+</html>

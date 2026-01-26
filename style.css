@@ -1442,19 +1442,25 @@ h2 span {
             transition: opacity 0.6s ease-out, visibility 0.6s;
         }
 
-        /* --- .preloader-logo {
+        .preloader-logo {
             font-size: 3rem;
             font-weight: 700;
-            color: white;
+            color: rgba(255, 255, 255, 0.3);
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 1rem;
+            ga: 1rem;
             margin-bottom: 2rem;
             animation: pulseLogo 1.5s infinite ease-in-out;
-        } --- */
 
-        #preloader .company-logo img {
+            widt: 100px;
+            heigh: 50x;
+            border-left: 22px solid wheat;
+            border-top: 12px solid rgb(20, 20, 19);
+            Border-radius: 50%;
+        } 
+
+        /* ---#preloader .company-logo img {
           width: 200px;
           display: flex;
           align-items: center;
@@ -1463,12 +1469,13 @@ h2 span {
           border-radius: 50%;
           font-weight: 700;
           animation: pulseLogo 1.5s infinite ease-in-out;
+           
           
-        }
+        } --- */
 
         #preloader p{
           color: black;
-          margin-left: 10px;
+          margin-left: 15px;
           font-size: 1rem;
         }
 
@@ -1492,6 +1499,7 @@ h2 span {
             visibility: hidden;
             pointer-events: none;
         }
+
 
 
 

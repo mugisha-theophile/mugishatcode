@@ -1433,7 +1433,7 @@ h2 span {
             width: 100%;
             height: 100%;
             background-colo: var(--primary-color); /* Brand Color Background */
-            background-color: rgb(189, 187, 187); /* Brand Color Background */
+            background-color: var(--primary-color); /* Brand Color Background */
             z-index: 99999; /* Top of everything */
             display: flex;
             flex-direction: column;
@@ -1490,6 +1490,7 @@ h2 span {
             visibility: hidden;
             pointer-events: none;
         }
+
 
 
 

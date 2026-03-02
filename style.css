@@ -1451,8 +1451,7 @@ h2 span {
             align-items: center;
             ga: 1rem;
             margin-bottom: 2rem;
-            animation: pulseLogo 1.5s infinite ease-in-out;
-
+            animation: pulseLogo 1s infinite ease-in-out;
             width: 40px;
             heigh: 40px;
             border-left: 22px solid wheat;
@@ -1465,10 +1464,9 @@ h2 span {
           display: flex;
           align-items: center;
           font-size: 3rem;
-          border: 2px solid white;
           border-radius: 50%;
           font-weight: 700;
-          animation: pulseLogo 1.5s infinite ease-in-out;
+          animation: pulseLogo 1s infinite ease-in-out;
            
           
         } 
@@ -1499,6 +1497,7 @@ h2 span {
             visibility: hidden;
             pointer-events: none;
         }
+
 
 
 

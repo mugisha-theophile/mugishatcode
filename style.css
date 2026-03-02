@@ -1453,15 +1453,15 @@ h2 span {
             margin-bottom: 2rem;
             animation: pulseLogo 1.5s infinite ease-in-out;
 
-            widt: 100px;
-            heigh: 50x;
+            width: 40px;
+            heigh: 40px;
             border-left: 22px solid wheat;
             border-top: 12px solid rgb(20, 20, 19);
             Border-radius: 50%;
         } 
 
-        /* ---#preloader .company-logo img {
-          width: 200px;
+        #preloader .company-logo img {
+          width: 150px;
           display: flex;
           align-items: center;
           font-size: 3rem;
@@ -1471,7 +1471,7 @@ h2 span {
           animation: pulseLogo 1.5s infinite ease-in-out;
            
           
-        } --- */
+        } 
 
         #preloader p{
           color: black;
@@ -1499,6 +1499,7 @@ h2 span {
             visibility: hidden;
             pointer-events: none;
         }
+
 
 
 
